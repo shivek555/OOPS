@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int is_leap_year(int year) {
+    if (year % 4 != 0) {
+        return 0;
+    } else if (year % 100 != 0) {
+        return 1;
+    } else if (year % 400 != 0) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+// Function to get the number of days in a month
+int get_days_in_month(int month, int year) {
+    int days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (month == 2 && is_leap_year(year)) {
+        return 29;
+    } else {
+        return days_in_month[month - 1];
+    }
+}
+
+// Function to find the date on which a given day of a given month and given year lies
+void find_date(int day, int month, int year) {
+    int days_passed = 0,i;
+    char *days_of_week[7];
+    int day_of_week;
+    for (i = 0; i < month - 1; i++) {
+	days_passed += get_days_in_month(i + 1, year);
+    }
+    days_passed += day - 1;
+    day_of_week = (days_passed + 4) % 7; // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+    days_of_week= {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    printf("The date on which the %d%s day of %s %d lies is %s, %s %d, %d.\n", day, (day == 1) ? "" : "th",
+	   (month == 1) ? "January" : (month == 2) ? "February" : (month == 3) ? "March" : (month == 4) ? "April" :
+	   (month == 5) ? "May" : (month == 6) ? "June" : (month == 7) ? "July" : (month == 8) ? "August" :
+	   (month == 9) ? "September" : (month == 10) ? "October" : (month == 11) ? "November" : "December",
+	   year, days_of_week[day_of_week], days_of_week[day_of_week], day, year);
+}
+
+int main() {
+    int day, month, year;
+    printf("Enter the day, month, and year: ");
+    scanf("%d %d %d", &day, &month, &year);
+    find_date(day, month, year);
+    return 0;
+}

@@ -1,0 +1,41 @@
+# Project: A3SGolf
+# Makefile created by Dev-C++ 4.9.9.0
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = 
+OBJ  = ball.o hole.o graphics.o speedometer.o main.o $(RES)
+LINKOBJ  = ball.o hole.o graphics.o speedometer.o main.o $(RES)
+LIBS =  -L"E:/Dev-Cpp/lib" C:/Dev-Cpp/lib/liballeg.a  -g3 
+INCS =  -I"E:/Dev-Cpp/include" 
+CXXINCS =  -I"E:/Dev-Cpp/include/c++/3.3.1"  -I"E:/Dev-Cpp/include/c++/3.3.1/mingw32"  -I"E:/Dev-Cpp/include/c++/3.3.1/backward"  -I"E:/Dev-Cpp/lib/gcc-lib/mingw32/3.3.1/include"  -I"E:/Dev-Cpp/include" 
+BIN  = A3SGolf.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before A3SGolf.exe all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "A3SGolf.exe" $(LIBS)
+
+ball.o: ball.cpp
+	$(CPP) -c ball.cpp -o ball.o $(CXXFLAGS)
+
+hole.o: hole.cpp
+	$(CPP) -c hole.cpp -o hole.o $(CXXFLAGS)
+
+graphics.o: graphics.cpp
+	$(CPP) -c graphics.cpp -o graphics.o $(CXXFLAGS)
+
+speedometer.o: speedometer.cpp
+	$(CPP) -c speedometer.cpp -o speedometer.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)

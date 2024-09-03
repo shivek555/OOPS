@@ -1,0 +1,80 @@
+#include<iostream.h>
+#include<graphics.h>
+#include<fstream.h>
+#include<conio.h>
+
+struct A {
+    char type[2];            // Magic identifier
+    unsigned long size;      // File size in bytes
+    unsigned short int reserved1, reserved2;
+    unsigned long offset;    // Offset to image data, bytes
+} HEADER;
+
+struct B {
+    unsigned long size;             // Header size in bytes
+    unsigned long width, height;    // Width and height of image
+    unsigned short int planes;      // Number of colour planes
+    unsigned short int bits;        // Bits per pixel
+    unsigned long compression;      // Compression type
+    unsigned long imagesize;        // Image size in bytes
+    unsigned long xresolution, yresolution;    // Pixels per meter
+    unsigned long ncolours;         // Number of colours
+    unsigned long importantcolours; // Important colours
+} INFOHEADER;
+
+huge DetectSvga() {
+    return 2;
+}
+
+void Show() {
+    fstream File;
+    File.open("C:\\TURBOC3\\BIN\\Untitled.bmp", ios::in | ios::binary); // Open in binary mode
+    char Ch;
+    File.read((char*)&HEADER, sizeof(A));        // Read the header part of the Bitmap
+    File.read((char*)&INFOHEADER, sizeof(B));    // Read another part of the bitmap
+    unsigned int i;
+    char ColorBytes[4];
+    char* PaletteData;
+
+    PaletteData = new char[256];
+
+    if (PaletteData) {
+        // Read color data
+        for (i = 0; i < 256; i++) {
+            File.read(ColorBytes, 4);
+            PaletteData[i] = ColorBytes[0] >> 2;
+            PaletteData[i+1] = ColorBytes[1] >> 2;
+            PaletteData[i+2] = ColorBytes[2] >> 2;
+        }
+
+        outp(0x03c8, 0);      // Tell DAC that data is coming
+
+        for (i = 0; i < 256; i++) { // Send data to SVGA DAC
+            outp(0x03c9, PaletteData[i]);
+        }
+        delete[] PaletteData;
+    }
+
+    for (i = 0; i < INFOHEADER.height; i++) {
+        for (int j = 0; j < INFOHEADER.width;) {
+            File.read(&Ch, 1); // Read the color of your bitmap
+            putpixel(0 + (j++), 0 + INFOHEADER.height - i - 1, Ch);
+        }
+    }
+
+    File.close();
+}
+
+int main() {
+    clrscr();
+    int gd = DETECT, md, a;
+    initgraph(&gd, &md, "C:\\TURBOC3\\BGI"); // Path may be different on your computer
+    installuserdriver("svga256", &DetectSvga);
+    Show();
+    getch();
+    setcolor(BLACK);
+    setfillstyle(1, 0);
+    getch();
+    closegraph();
+    return 0;
+}

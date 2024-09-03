@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdio> // For sprintf
+
+class Entry {
+public:
+    std::string date;
+    std::string description;
+    double amount;
+    
+    Entry(std::string d, std::string desc, double amt) 
+        : date(d), description(desc), amount(amt) {}
+};
+
+class Journal {
+private:
+    std::vector<Entry> entries;
+public:
+    void addEntry(const std::string& date, const std::string& description, double amount) {
+        entries.emplace_back(date, description, amount);
+    }
+
+    const std::vector<Entry>& getEntries() const {
+        return entries;
+    }
+};
+
+class Ledger {
+private:
+    std::vector<Entry> entries;
+public:
+    void addEntry(const std::string& date, const std::string& description, double amount) {
+        entries.emplace_back(date, description, amount);
+    }
+
+    void display() const {
+        std::cout << "Ledger Entries:\n";
+        printf("%-15s %-25s %-15s\n", "Date", "Description", "Amount");
+        for (const auto& entry : entries) {
+            printf("%-15s %-25s %-15.2f\n", entry.date.c_str(), entry.description.c_str(), entry.amount);
+        }
+    }
+};
+
+class CashBook {
+private:
+    std::vector<Entry> entries;
+    double cashBalance;
+
+public:
+    CashBook() : cashBalance(0.0) {}
+
+    void addEntry(const std::string& date, const std::string& description, double amount) {
+        entries.emplace_back(date, description, amount);
+        cashBalance += amount;
+    }
+
+    void display() const {
+        std::cout << "Cash Book Entries:\n";
+        printf("%-15s %-25s %-15s\n", "Date", "Description", "Amount");
+        for (const auto& entry : entries) {
+            printf("%-15s %-25s %-15.2f\n", entry.date.c_str(), entry.description.c_str(), entry.amount);
+        }
+        printf("Cash Balance: %.2f\n", cashBalance);
+    }
+};
+
+int main() {
+    Journal journal;
+    Ledger ledger;
+    CashBook cashBook;
+
+    journal.addEntry("2023-06-01", "Sales", 1500.0);
+    journal.addEntry("2023-06-02", "Purchase", -500.0);
+
+    for (const auto& entry : journal.getEntries()) {
+        ledger.addEntry(entry.date, entry.description, entry.amount);
+        cashBook.addEntry(entry.date, entry.description, entry.amount);
+    }
+
+    ledger.display();
+    cashBook.display();
+
+    return 0;
+}

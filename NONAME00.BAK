@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main(){
+ int a,b;
+ printf("hello world without semi colomn;\n with two method\n 1) while loop : enter 1 for this\n 2) if statement: press 2 for this ");
+ scanf("%d",&a);
+ if (a==2){
+     if(printf("hello world")){}
+ }
+ else{
+    while(!printf("hello wolrd")){}
+ }
+ printf("A broken heart is all that's left\n
+I'm still fixing all the cracks
+Lost a couple of pieces when
+I carried it, carried it, carried it home
+… I'm afraid of all I am
+My mind feels like a foreign land
+Silence ringing inside my head
+Please carry me, carry me, carry me home
+… I've spent all of the love I saved
+We were always a losing game
+Small town boy in a big arcade
+I got addicted to a losing game\n
+… Oh\n
+Oh\n
+All I know, all I know\n
+Loving you is a losing game\n
+… Do you love me, love me not?\n
+Giving pieces from my heart\n
+Tomorrow's coming and has gone\n
+Still I carried, I carried, I carried on\n
+… Oh\n
+Oh\n
+All I know, all I know\n
+Loving you is a losing game\n
+… Oh\n
+Oh\n
+All I know, all I know\n
+Loving you is a losing game\n
+… I don't need your games, game over\n
+… Get me off this rollercoaster\n
+… Oh\n
+Oh\n
+All I know, all I know\n
+Loving you is a losing game\n
+… Oh\n
+Oh\n
+All I know, all I know\n
+Loving you is a losing game"
+ scanf("%d",&b);
+ return 0;
+}

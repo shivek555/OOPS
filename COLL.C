@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main(){
+/* int a,b,c,x;
+ printf("enter three number:");
+ scanf("%d,%d,%d",&a,&b,&c);
+ if (a>b&&a>c){
+  printf("max number is %d",a);
+}
+ else if(b>a&&b>c){
+  printf("max number is %d",b);
+  }
+ else {
+ printf("max number is %d",c);
+ }
+ scanf("%d",&x);
+ */
+ int x,i;
+ int number, isPrime = 1;
+
+// Input the number
+ printf("Enter a number: ");
+ scanf("%d", &number);
+
+    // Check if the number is prime
+ if (number <= 1) {
+ isPrime = 0;}
+  else {
+ for (i= 2; i * i <= number; i++) {
+     if (number % i == 0) {
+	isPrime = 0;
+	break;
+   }
+ }
+}
+  if (isPrime) {
+        printf("%d is a prime number.\n", number);
+    } else {
+        printf("%d is not a prime number.\n", number);
+    }
+
+ scanf("%d",&x);
+ return 0;
+}

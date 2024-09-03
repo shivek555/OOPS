@@ -1,0 +1,20 @@
+# include <stdio.H>
+void main()
+{
+ int a,b,c,x;
+ printf("enter 1ST number:");
+ scanf("%d",&a);
+ printf("enter 2ND number:");
+ scanf("%d",&b);
+ printf("enter 3RD number:");
+ scanf("%d",&c);
+ if (a>b){
+  if (a>c){printf("greatest number among three is %d.",a);}
+  else{printf("greatest number among three is %d.",c);}
+ }
+ else if (b>a){if (b>c){printf("greatest number among three is %d.",b);}
+  else{printf("greatest number among three is %d.",c);}
+ }
+ else{printf("greatest number among three is %d.",c);}
+ scanf("%d",&x);
+}

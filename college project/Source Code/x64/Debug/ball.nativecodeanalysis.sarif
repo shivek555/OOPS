@@ -1,0 +1,101 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/kerol/Desktop/brick2/BrickBreaker/BrickBreaker/ball.cpp"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 45,
+                  "endLine": 14,
+                  "endColumn": 49
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "MyBall::boundingRect",
+                  "decoratedName": "?boundingRect@MyBall@@UEBA?AVQRectF@@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/kerol/Desktop/brick2/BrickBreaker/BrickBreaker/ball.cpp"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 57,
+                  "endLine": 14,
+                  "endColumn": 61
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "MyBall::boundingRect",
+                  "decoratedName": "?boundingRect@MyBall@@UEBA?AVQRectF@@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.34.31933.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/kerol/Desktop/brick2/BrickBreaker/BrickBreaker/ball.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "3f825433742fd36853e2cdd7f8481c4ab19c1779580df209418a75d65f229157"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/ball.h"
+          },
+          "hashes": {
+            "sha-256": "4efd8f7ab1048d1e1065066802d78e755cb421a7960b56a0eb366b86d72ec147"
+          }
+        }
+      ]
+    }
+  ]
+}

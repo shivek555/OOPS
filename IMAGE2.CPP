@@ -1,0 +1,113 @@
+#include <iostream.h>
+#include <fstream.h>
+
+// Simplified implementation of the Vector class
+template<typename T>
+class Vector {
+private:
+    T* data;
+    size_t capacity;
+    size_t size;
+
+public:
+    Vector() : data(nullptr), capacity(0), size(0) {}
+    ~Vector() { delete[] data; }
+
+    // Function to add elements to the vector
+    void push_back(const T& value) {
+        if (size >= capacity) {
+            size_t newCapacity = (capacity == 0) ? 1 : capacity * 2;
+            T* newData = new T[newCapacity];
+            for (size_t i = 0; i < size; ++i) {
+                newData[i] = data[i];
+            }
+            delete[] data;
+            data = newData;
+            capacity = newCapacity;
+        }
+        data[size++] = value;
+    }
+
+    // Function to access elements by index
+    T& operator[](size_t index) { return data[index]; }
+    const T& operator[](size_t index) const { return data[index]; }
+
+    // Function to get the size of the vector
+    size_t getSize() const { return size; }
+};
+
+// Structure to represent an RGB pixel
+struct RGBPixel {
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+};
+
+// Simple grayscale conversion function
+void convertToGrayscale(Vector<RGBPixel>& imageData, int width, int height) {
+    unsigned char grayValue = 0;
+    for (size_t i = 0; i < imageData.getSize(); ++i) {
+        // Grayscale value is the average of RGB channels
+        grayValue = (imageData[i].red + imageData[i].green + imageData[i].blue) / 3;
+        imageData[i].red = grayValue;
+        imageData[i].green = grayValue;
+        imageData[i].blue = grayValue;
+    }
+}
+
+// Simple image loading function
+bool loadImage(const char* filename, Vector<RGBPixel>& imageData, int& width, int& height) {
+    std::ifstream file(filename, std::ios::binary);
+    if (!file) {
+        std::cerr << "Error: Couldn't open the image file." << std::endl;
+        return false;
+    }
+
+    int fileWidth = 0, fileHeight = 0;
+
+    // Read image dimensions
+    file.seekg(18); // Skip to width and height fields
+    file.read(reinterpret_cast<char*>(&fileWidth), sizeof(fileWidth));
+    file.read(reinterpret_cast<char*>(&fileHeight), sizeof(fileHeight));
+
+    // Adjust file pointer to start of pixel data
+    file.seekg(54); // Skip file header
+
+    // Read pixel data
+    for (int i = 0; i < fileWidth * fileHeight; ++i) {
+        RGBPixel pixel;
+        file.read(reinterpret_cast<char*>(&pixel.blue), sizeof(unsigned char));
+        file.read(reinterpret_cast<char*>(&pixel.green), sizeof(unsigned char));
+        file.read(reinterpret_cast<char*>(&pixel.red), sizeof(unsigned char));
+        imageData.push_back(pixel);
+    }
+
+    file.close();
+    width = fileWidth;
+    height = fileHeight;
+    return true;
+}
+
+int main() {
+    // Define the filename of the image
+    const char* filename = "C:\\TURBOC3\\BIN\\Untitled.bmp";
+
+    // Load the image
+    Vector<RGBPixel> imageData;
+    int width = 0, height = 0;
+    if (!loadImage(filename, imageData, width, height)) {
+        return 1;
+    }
+
+    // Convert the image to grayscale
+    convertToGrayscale(imageData, width, height);
+
+    // Print the grayscale image data (for demonstration)
+    unsigned char grayValue = 0;
+    for (size_t i = 0; i < imageData.getSize(); ++i) {
+        grayValue = imageData[i].red;
+        std::cout << "Pixel " << i << " (Gray): " << static_cast<int>(grayValue) << std::endl;
+    }
+
+    return 0;
+}

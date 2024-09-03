@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+void print_marks(int student_num, int marks[3]) {
+int i;
+  printf("Student %d:\n", student_num);
+  for(i = 0; i < 3; i++) {
+    printf("Test %d: %d\n", i+1, marks[i]);
+  }
+}
+
+void get_marks(int marks[10][3), int student_num) {
+  printf("Enter marks for student %d:\n", student_num);
+int i;
+  for(i = 0; i < 3; i++) {
+    printf("Test %d: ", i+1);
+    scanf("%d", &marks[student_num-1][i]);
+  }
+}
+
+int main() {
+  int marks[10][3];
+int i;
+  // Prompt user to enter marks for each student
+  for(i = 0; i < 10; i++) {
+    get_marks(marks, i+1);
+  }
+
+  // Print marks for each student using the function
+  for(i = 0; i < 10; i++) {
+    print_marks(i+1, marks[i]);
+  }
+
+  // Calculate total and average marks for each student
+  int total[10] = {0};
+  int sum = 0;
+  float averages[10];
+  for(i = 0; i < 10; i++) {
+    for(int j = 0; j < 3; j++) {
+      total[i] += marks[i][j];
+    }
+    averages[i] = (float)total[i] / 3;
+  }
+
+  // Print total and average marks for each student
+  for(i = 0; i < 10; i++) {
+    printf("Student %d:\n", i+1);
+    printf("Total marks: %d\n", total[i]);
+    printf("Average marks: %.2f\n", averages[i]);
+  }
+
+  return 0;
+}

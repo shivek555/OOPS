@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.34.31933.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/mainmenu.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "62dae526aea80a71e52dca0354b59baec86cca253b65da08c797e194394222e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/mainmenu.h"
+          },
+          "hashes": {
+            "sha-256": "bd1319a08ffad30a2c563a65c728964e17362952044f3d94742ae8b85416e7f3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/mainwindow.h"
+          },
+          "hashes": {
+            "sha-256": "668a52001d605a732b0d00df8ecb3c26e0b350974249b373746363a14ba07d0c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/quadtree.h"
+          },
+          "hashes": {
+            "sha-256": "2fb1f6dc4ba66d84f283660b059b074626ba300e795f13579f0cd7dda8dc89da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/kerol/desktop/brick2/brickbreaker/brickbreaker/ball.h"
+          },
+          "hashes": {
+            "sha-256": "4efd8f7ab1048d1e1065066802d78e755cb421a7960b56a0eb366b86d72ec147"
+          }
+        }
+      ]
+    }
+  ]
+}

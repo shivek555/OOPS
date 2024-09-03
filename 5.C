@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+
+    int x,y;
+int v,u,a,t;
+int h,p;
+int s;
+int d,b,c;
+    printf("What do you want to calculate\n1)Velocity\n2)Distance\n3)Time period\n4)Hypotenuse\nEnter number of equaiton:");
+    scanf("%d",&x);
+
+    if(x==1)
+    {
+	printf("enter value of 'u':");
+	scanf("%d",&u);
+	printf("enter value of 'a':");
+	scanf("%d",&a);
+	printf("enter value of 't':");
+	scanf("%d",&t);
+	v=u+(a*t);
+	printf("value of velocity is: %d",v);
+    }
+    if(x==2)
+    {
+	printf("enter value of 'u':");
+	scanf("%d",&u);
+	printf("enter value of 'a':");
+	scanf("%d",&a);
+	printf("enter value of 't':");
+	scanf("%d",&t);
+	s=(u*t)+(1/2)*((a*t)*(a*t));
+	printf("value of distance is:%d",s);
+    }
+
+    if(x==3)
+    {
+	printf("enter value of 'd':");
+	scanf("%d",&d);
+	printf("enter value of 'b':");
+	scanf("%d",&b);
+	printf("enter value of 'c':");
+	scanf("%d",&c);
+	t=2*a+sqrt(b)+9*c;
+	printf("value of time period is:%d",t);
+    }
+
+    if(x==4)
+    {
+	printf("enter value of 'b':");
+	scanf("%d",&b);
+	printf("enter value of 'p':");
+	scanf("%d",&p);
+	h=sqrt((b*b)+(p*p));
+	printf("%d",h);
+    }
+    scanf("%d",&y);
+    return 0;
+}
